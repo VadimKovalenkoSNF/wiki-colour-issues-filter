@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color issue filter</title>
+    <style>
+        iframe {
+            display: block;
+            width: 842px;
+            margin: 0 auto;
+            height: 80vh;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <p>Check specific url from mobilehtml (e.g. <span style="color:blue;">https://mobileapps.wmflabs.org/en.wikipedia.org/v1/page/mobile-html/Canada</span>)</p>
+        <input type="text" id="mobilehtmlURL">
+        <button type="button" onClick="getPage()">
+            Get page
+        </button>
+    </section>
+    <section id="mobilehtmlContent">
+        <iframe id="mobilehtmlIframe" src="" frameborder="0">
+        </iframe>
+    </section>
+    <script>
+        const iframe = document.getElementById("mobilehtmlIframe");
+
+        const initTreeWalker = () => {
+            const body = document.querySelector('body');
+            const walker = document.createTreeWalker(body);
+            while (walker.nextNode()) {   
+                if (walker.currentNode && walker.currentNode.nodeType === 1) {
+                    if (window.getComputedStyle(walker.currentNode).backgroundColor === window.getComputedStyle(walker.currentNode).color) {
+                        // Highlight wrong styles with the red border
+                        walker.currentNode.style.border = '2px solid red';
+                    }
+                }
+            }
+        }
+
+        const getPage = function() {
+            const mobilehtmlURL = document.getElementById('mobilehtmlURL').value;
+            iframe.src = mobilehtmlURL;
+            iframe.addEventListener("load", initTreeWalker);
+        }
+   </script>
+</body>
+</html>
