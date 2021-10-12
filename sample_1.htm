@@ -178,20 +178,20 @@
                 <i>Fight 3</i>: Barry Bonds crushes his own head after accidentally receiving the "<a href="./Squeeze_play_(baseball)" title="Squeeze play (baseball)">suicide squeeze</a>" sign from Nick Diamond (Nick was swatting at lint, which he thought was a bee).
              </td>
           </tr>
-          <!--Disable this script if want to perform /DOM manipulations only on server side ( e.g. index.js )-->
-          <script>
-             const body = document.querySelector('body');
-               const walker = document.createTreeWalker(body);
-               while (walker.nextNode()) {   
-                  if (walker.currentNode && walker.currentNode.nodeType === 1) {
-                     if (window.getComputedStyle(walker.currentNode).backgroundColor === window.getComputedStyle(walker.currentNode).color) {
-                     // Highlight wrong styles with the red border
-                     walker.currentNode.style.border = '2px solid red';
-                  }
-                  }  
-               }
-          </script>
        </tbody>
     </table>
+    <!--Disable this script if want to perform /DOM manipulations only on server side ( e.g. index.js )-->
+    <script>
+        const body = document.querySelector('body');
+        const walker = document.createTreeWalker(body);
+        while (walker.nextNode()) {   
+            if (walker.currentNode && walker.currentNode.nodeType === 1) {
+                if (window.getComputedStyle(walker.currentNode).backgroundColor === window.getComputedStyle(walker.currentNode).color) {
+                    // Highlight wrong styles with the red border
+                    walker.currentNode.style.border = '2px solid red';
+                }
+            }  
+        }
+    </script>
   </body>
 </html>
